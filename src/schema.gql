@@ -2,17 +2,61 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Task {
+  uid: String!
+  name: String!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  column: TableColumn!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type TableColumn {
+  uid: String!
+  name: String!
+  createdAt: DateTime!
+  table: Table!
+  tasks: [Task!]!
+}
+
+type Table {
+  uid: String!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  columns: [TableColumn!]!
+  user: User!
+}
+
+type User {
+  uid: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  tables: [Table!]!
+}
+
 type JwtPayloadDto {
   accessToken: String!
 }
 
 type Query {
   hello: String!
+  task(id: Int!): Task!
 }
 
 type Mutation {
   signUp(authCredentialsDto: AuthCredentialsDto!): String!
   signIn(authCredentialsDto: AuthCredentialsDto!): JwtPayloadDto!
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  removeTask(id: Int!): Task!
 }
 
 input AuthCredentialsDto {
@@ -20,4 +64,15 @@ input AuthCredentialsDto {
   password: String!
   firstName: String
   lastName: String
+}
+
+input CreateTaskInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateTaskInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
