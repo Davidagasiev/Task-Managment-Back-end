@@ -60,6 +60,9 @@ type Mutation {
   createTask(createTaskInput: CreateTaskInput!): Task!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
   removeTask(id: Int!): Task!
+  createTableColumn(createTableColumnInput: CreateTableColumnInput!): TableColumn!
+  updateTableColumn(updateTableColumnInput: UpdateTableColumnInput!): TableColumn!
+  deleteTableColumn(uid: String!): String!
 }
 
 input AuthCredentialsDto {
@@ -74,7 +77,7 @@ input CreateTableInput {
 }
 
 input UpdateTableInput {
-  name: String!
+  name: String
   uid: String!
 }
 
@@ -87,4 +90,14 @@ input UpdateTaskInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
+}
+
+input CreateTableColumnInput {
+  name: String!
+  tableUid: String!
+}
+
+input UpdateTableColumnInput {
+  uid: String!
+  name: String!
 }

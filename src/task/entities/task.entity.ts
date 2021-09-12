@@ -32,7 +32,9 @@ export class Task {
   @Field()
   updatedAt: Date;
 
-  @ManyToOne(() => TableColumn, (tableColumn) => tableColumn.tasks)
+  @ManyToOne(() => TableColumn, (tableColumn) => tableColumn.tasks, {
+    onDelete: 'CASCADE',
+  })
   @Field(() => TableColumn)
   column: TableColumn;
 }

@@ -14,6 +14,17 @@ export class TableService {
     const newTable = this.tableRepository.create({
       name,
       user,
+      columns: [
+        {
+          name: 'To-do',
+        },
+        {
+          name: 'In Progress',
+        },
+        {
+          name: 'Done',
+        },
+      ],
     });
 
     return this.tableRepository.save(newTable);
@@ -38,18 +49,18 @@ export class TableService {
   }
 
   async delete(uid: string, user: User) {
-    const tableToUpdate = await this.tableRepository.findOneOrFail({
+    const tableToDelete = await this.tableRepository.findOneOrFail({
       where: {
         uid,
       },
       relations: ['user'],
     });
 
-    if (tableToUpdate.user.uid !== user.uid) {
+    if (tableToDelete.user.uid !== user.uid) {
       throw new ForbiddenException();
     }
 
-    await this.tableRepository.delete(uid);
+    await this.tableRepository.delete(tableToDelete);
 
     return 'Success';
   }

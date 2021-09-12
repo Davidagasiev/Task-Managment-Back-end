@@ -31,7 +31,10 @@ export class Table {
   @Field()
   updatedAt: Date;
 
-  @OneToMany(() => TableColumn, (columns) => columns.table)
+  @OneToMany(() => TableColumn, (columns) => columns.table, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @Field(() => [TableColumn])
   columns: TableColumn[];
 

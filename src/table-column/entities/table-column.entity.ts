@@ -30,7 +30,7 @@ export class TableColumn {
   @Field(() => Table)
   table: Table;
 
-  @OneToMany(() => Task, (task) => task.column)
+  @OneToMany(() => Task, (task) => task.column, { onDelete: 'CASCADE' })
   @Field(() => [Task])
   tasks: Task[];
 }
