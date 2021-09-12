@@ -15,7 +15,7 @@ import { TableColumn } from '../../table-column/entities/table-column.entity';
 @ObjectType()
 @Entity()
 export class Table {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   @Field()
   uid: string;
 

@@ -54,6 +54,9 @@ type Query {
 type Mutation {
   signUp(authCredentialsDto: AuthCredentialsDto!): String!
   signIn(authCredentialsDto: AuthCredentialsDto!): JwtPayloadDto!
+  createTable(createTableInput: CreateTableInput!): Table!
+  updateTable(updateTableInput: UpdateTableInput!): Table!
+  deleteTable(uid: String!): String!
   createTask(createTaskInput: CreateTaskInput!): Task!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
   removeTask(id: Int!): Task!
@@ -64,6 +67,15 @@ input AuthCredentialsDto {
   password: String!
   firstName: String
   lastName: String
+}
+
+input CreateTableInput {
+  name: String!
+}
+
+input UpdateTableInput {
+  name: String!
+  uid: String!
 }
 
 input CreateTaskInput {

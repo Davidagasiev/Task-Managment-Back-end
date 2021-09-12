@@ -12,7 +12,7 @@ import {
 @ObjectType()
 @Entity()
 export class Task {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   @Field()
   uid: string;
 
