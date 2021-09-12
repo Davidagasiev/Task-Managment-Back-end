@@ -48,7 +48,6 @@ type JwtPayloadDto {
 
 type Query {
   hello: String!
-  task(id: Int!): Task!
 }
 
 type Mutation {
@@ -59,7 +58,8 @@ type Mutation {
   deleteTable(uid: String!): String!
   createTask(createTaskInput: CreateTaskInput!): Task!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
-  removeTask(id: Int!): Task!
+  updateTaskStatus(updateTaskStatusInput: UpdateTaskStatusInput!): Task!
+  deleteTask(uid: String!): String!
   createTableColumn(createTableColumnInput: CreateTableColumnInput!): TableColumn!
   updateTableColumn(updateTableColumnInput: UpdateTableColumnInput!): TableColumn!
   deleteTableColumn(uid: String!): String!
@@ -82,14 +82,20 @@ input UpdateTableInput {
 }
 
 input CreateTaskInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  columnUid: String!
+  description: String!
 }
 
 input UpdateTaskInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  uid: String!
+  name: String!
+  description: String!
+}
+
+input UpdateTaskStatusInput {
+  uid: String!
+  columnUid: String!
 }
 
 input CreateTableColumnInput {
