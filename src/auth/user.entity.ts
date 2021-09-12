@@ -15,4 +15,12 @@ export class User {
   @Field()
   @Column()
   lastName: string;
+
+  @Field()
+  @Column({ unique: true })
+  email: string;
+
+  @Field()
+  @Column()
+  password: string;
 }

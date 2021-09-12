@@ -2,6 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type JwtPayloadDto {
+  accessToken: String!
+}
+
 type Query {
   hello: String!
+}
+
+type Mutation {
+  signUp(authCredentialsDto: AuthCredentialsDto!): String!
+  signIn(authCredentialsDto: AuthCredentialsDto!): JwtPayloadDto!
+}
+
+input AuthCredentialsDto {
+  email: String!
+  password: String!
+  firstName: String
+  lastName: String
 }
